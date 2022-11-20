@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>STYLES WARE</title>
+
+	<!----Custom css link---->
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" />
+
+	<link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	
+
+	<!----header start--->
+	<div class="header">
+		<p style="color: rgb(0, 0, 0); text-align: center; font-size: 28px; font-weight: 600;"><span style="color:blueviolet;">Styles</span> Ware</p>
+		<div>
+			<a href="#" style="color: black;"><i class='bx bxs-shopping-bag' ></i></a>
+			<span class="badge bg-primary " style="font-size: 14px;">{{role}}</span>
+			<a href="/logout" style="font-size: 18px;" class="btn btn-danger">Logout</a>
+
+		</div>
+	</div>
+    <a href="/back" class="btn btn-dark" style="margin:10px 0px 0px 20px ;">back</a>
+	<div class="message">
+		{% if msg %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+             {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+	{% endif %}
+	</div>
+
+
+	<!----shop start--->
+	<section class="shop" id="shop">
+		<h3 style="text-align:center; font-size: 28px;">Today's Offer</h3>
+		<div class="container">
+			{% for product in products %}
+			<div class="box">
+				<img src="{{product['IMG']}}" alt="img">
+				<h4>{{product['NAME']}}</h4>
+				<div class="price">
+					<h5>₹{{product['PRICE']}}</h5>
+					<p>₹{{product['OFFPRICE']}}</p>
+				</div>
+				<a href="/setProduct/{{product['SUB1']}}" 
+				class="btn btn-primary"
+				>View Product</a>
+				<div class="cart" title="Add to cart">
+					<a href="#"><i class='bx bx-cart' ></i></a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<!----about start--->
+	<section class="about" id="about">
+		<div class="about-content">
+			<h2>About</h2>
+			<p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.</p>
+		</div>
+	</section>
+
+	<!----contact start--->
+	<section class="contact" id="contact">
+		<div class="main-contact">
+			<div class="contact-content">
+				<li><a href="#shop">Shop</a></li>
+			  <li><a href="#about">About</a></li>
+			  <li><a href="#faq">Faq</a></li>
+			  <li><a href="#contact">Contact</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Shipping & Returns</a></li>
+				<li><a href="#">Store Policy</a></li>
+				<li><a href="#">Payment Methods</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Tel: 123-456-7890</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Facebook</a></li>
+				<li><a href="#">Instagram</a></li>
+				<li><a href="#">Pinterest</a></li>
+			</div>
+
+		</div>
+
+		<div class="action">
+			<form>
+				<input type="email" name="email" placeholder="Your Email" required>
+				<input type="submit" name="submit" value="Submit" required>
+			</form>
+		</div>
+	</section>
+
+	<div class="last">
+		<p>© 2023 by Style ware</p>
+	</div>
+
+	<!----custom js link--->
+	<script src="{{ url_for('static', filename='home.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "9f830f17-51a0-4c07-81e1-4aead7157260", // The ID of this integration.
+    region: "au-syd", // The region your integration is hosted in.
+    serviceInstanceID: "e5319e39-166f-463b-9da4-bd8699929c44", // The ID of your service instance.
+    onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
+
+</body>
+</html>

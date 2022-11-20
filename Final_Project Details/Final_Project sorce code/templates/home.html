@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ecommerce Website Design</title>
+
+	<!----Custom css link---->
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}" />
+
+	<link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	
+
+	<!----header start--->
+	<div class="header">
+		<p style="color: rgb(0, 0, 0); text-align: center; font-size: 28px; font-weight: 600;"><span style="color:blueviolet;">Styles</span> Ware</p>
+		<div>
+			<a href="/viewCart" style="color: black;"><i class='bx bxs-shopping-bag' ></i></a>
+			<!-- <span class="badge bg-primary " style="font-size: 14px;"></span> -->
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+					Account
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="#">{{name}}({{role}})</a></li>
+					<li><a class="dropdown-item" href="/addProductpage">Add Product</a></li>
+					<li><a class="dropdown-item" href="/orderpage">View Orders</a></li>
+				</ul>`
+			</div>
+			<a href="/logout" style="font-size: 18px;" class="btn btn-danger">Logout</a>
+		</div>
+	</div>
+	<div class="message">
+		{% if msg %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+             {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+	{% endif %}
+	</div>
+	
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+		<img src="https://sslimages.shoppersstop.com/sys-master/root/hf9/h97/28537514328094/Styles-to-Own-Static-Vero-Moda-Webutut.jpg" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+		<img src="https://sslimages.shoppersstop.com/sys-master/root/h42/h34/28537507053598/Shopperstop-Stop-Selects-FRATINI-Webiwiiw.jpg" class="d-block w-100" alt="...">
+		</div>
+		<div class="carousel-item">
+		<img src="https://sslimages.shoppersstop.com/sys-master/root/h4e/h8d/28537506529310/Shopperstop-Stop-Selects-STOP-LIFE-Webksisikw.jpg" class="d-block w-100" alt="...">
+		</div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+	
+
+	<!----shop start--->
+	<section class="shop" id="shop">
+		<h3 style="text-align:center; font-size: 28px;">Our Products</h3>
+		<div class="container">
+			{% for product in products %}
+			<div class="box">
+				<img src="{{product['IMG']}}" alt="img">
+				<h4>{{product['NAME']}}</h4>
+				<div class="price">
+					<h5>₹{{product['PRICE']}}</h5>
+					<p>₹{{product['OFFPRICE']}}</p>
+				</div>
+				<a href="/setProduct/{{product['SUB1']}}" 
+				class="btn btn-primary"
+				>View Product</a>
+				<div class="cart" title="Add to cart">
+					<a href="#"><i class='bx bx-cart' ></i></a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<!----about start--->
+	<section class="about" id="about">
+		<div class="about-content">
+			<h2>About</h2>
+			<p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I’m a great place for you to tell a story and let your users know a little more about you.</p>
+		</div>
+	</section>
+
+	<!----contact start--->
+	<section class="contact" id="contact">
+		<div class="main-contact">
+			<div class="contact-content">
+				<li><a href="#shop">Shop</a></li>
+			  <li><a href="#about">About</a></li>
+			  <li><a href="#faq">Faq</a></li>
+			  <li><a href="#contact">Contact</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Shipping & Returns</a></li>
+				<li><a href="#">Store Policy</a></li>
+				<li><a href="#">Payment Methods</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Tel: 123-456-7890</a></li>
+			</div>
+
+			<div class="contact-content">
+				<li><a href="#">Facebook</a></li>
+				<li><a href="#">Instagram</a></li>
+				<li><a href="#">Pinterest</a></li>
+			</div>
+
+		</div>
+
+		<div class="action">
+			<form>
+				<input type="email" name="email" placeholder="Your Email" required>
+				<input type="submit" name="submit" value="Submit" required>
+			</form>
+		</div>
+	</section>
+
+	<div class="last">
+		<p>© 2023 by Tahmid. Proudly created with Tahmid Ahmed</p>
+	</div>
+
+	<!----custom js link--->
+	<script src="{{ url_for('static', filename='home.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "fc05e88a-9e7a-43a7-a707-3db931d45df6", // The ID of this integration.
+    region: "au-syd", // The region your integration is hosted in.
+    serviceInstanceID: "e5319e39-166f-463b-9da4-bd8699929c44", // The ID of your service instance.
+    onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
+
+</body>
+</html>
